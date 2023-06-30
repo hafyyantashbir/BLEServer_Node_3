@@ -216,6 +216,7 @@ void loop() {
       jsonobject["Pitch"] = pitch;
       jsonobject["Roll"] = roll;
       jsonobject["Frekuensi"] = frekuensi;
+      datakirim = "";
       serializeJson(doc, datakirim);
       char kirim_loop[datakirim.length() + 1];
       datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
@@ -269,6 +270,7 @@ void loop() {
       jsonobject1["Pitch"] = pitch;
       jsonobject1["Roll"] = roll;
       jsonobject1["Frekuensi"] = frekuensi;
+      datakirim = "";
       serializeJson(doc, datakirim);
       char kirim_loop[datakirim.length() + 1];
       datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
@@ -310,6 +312,7 @@ void loop() {
       jsonobject1["Pitch"] = pitch;
       jsonobject1["Roll"] = roll;
       jsonobject1["Frekuensi"] = frekuensi;
+      datakirim = "";
       serializeJson(doc, datakirim);
       char kirim_loop[datakirim.length() + 1];
       datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
@@ -355,6 +358,7 @@ void loop() {
       jsonobject1["Pitch"] = pitch;
       jsonobject1["Roll"] = roll;
       jsonobject1["Frekuensi"] = frekuensi;
+      datakirim = "";
       serializeJson(doc, datakirim);
       char kirim_loop[datakirim.length() + 1];
       datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
@@ -406,6 +410,7 @@ void loop() {
         jsonobject2["Pitch"] = pitch;
         jsonobject2["Roll"] = roll;
         jsonobject2["Frekuensi"] = frekuensi;
+        datakirim = "";
         serializeJson(doc, datakirim);
         char kirim_loop[datakirim.length() + 1];
         datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
@@ -440,6 +445,7 @@ void loop() {
         jsonobject2["Pitch"] = pitch;
         jsonobject2["Roll"] = roll;
         jsonobject2["Frekuensi"] = frekuensi;
+        datakirim = "";
         serializeJson(doc, datakirim);
         char kirim_loop[datakirim.length() + 1];
         datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
@@ -478,6 +484,7 @@ void loop() {
         jsonobject2["Pitch"] = pitch;
         jsonobject2["Roll"] = roll;
         jsonobject2["Frekuensi"] = frekuensi;
+        datakirim = "";
         serializeJson(doc, datakirim);
         char kirim_loop[datakirim.length() + 1];
         datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
@@ -516,6 +523,7 @@ void loop() {
         jsonobject2["Pitch"] = pitch;
         jsonobject2["Roll"] = roll;
         jsonobject2["Frekuensi"] = frekuensi;
+        datakirim = "";
         serializeJson(doc, datakirim);
         char kirim_loop[datakirim.length() + 1];
         datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
@@ -552,6 +560,7 @@ void loop() {
         jsonobject2["Pitch"] = pitch;
         jsonobject2["Roll"] = roll;
         jsonobject2["Frekuensi"] = frekuensi;
+        datakirim = "";
         serializeJson(doc, datakirim);
         char kirim_loop[datakirim.length() + 1];
         datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
@@ -588,6 +597,7 @@ void loop() {
         jsonobject2["Pitch"] = pitch;
         jsonobject2["Roll"] = roll;
         jsonobject2["Frekuensi"] = frekuensi;
+        datakirim = "";
         serializeJson(doc, datakirim);
         char kirim_loop[datakirim.length() + 1];
         datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
@@ -636,6 +646,7 @@ void loop() {
         jsonobject3["Pitch"] = pitch;
         jsonobject3["Roll"] = roll;
         jsonobject3["Frekuensi"] = frekuensi;
+        datakirim = "";
         serializeJson(doc, datakirim);
         char kirim_loop[datakirim.length() + 1];
         datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
@@ -680,6 +691,7 @@ void loop() {
         jsonobject3["Pitch"] = pitch;
         jsonobject3["Roll"] = roll;
         jsonobject3["Frekuensi"] = frekuensi;
+        datakirim = "";
         serializeJson(doc, datakirim);
         char kirim_loop[datakirim.length() + 1];
         datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
@@ -724,6 +736,7 @@ void loop() {
         jsonobject3["Pitch"] = pitch;
         jsonobject3["Roll"] = roll;
         jsonobject3["Frekuensi"] = frekuensi;
+        datakirim = "";
         serializeJson(doc, datakirim);
         char kirim_loop[datakirim.length() + 1];
         datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
@@ -768,6 +781,7 @@ void loop() {
         jsonobject3["Pitch"] = pitch;
         jsonobject3["Roll"] = roll;
         jsonobject3["Frekuensi"] = frekuensi;
+        datakirim = "";
         serializeJson(doc, datakirim);
         char kirim_loop[datakirim.length() + 1];
         datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
@@ -812,6 +826,7 @@ void loop() {
         jsonobject3["Pitch"] = pitch;
         jsonobject3["Roll"] = roll;
         jsonobject3["Frekuensi"] = frekuensi;
+        datakirim = "";
         serializeJson(doc, datakirim);
         char kirim_loop[datakirim.length() + 1];
         datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
@@ -856,6 +871,7 @@ void loop() {
         jsonobject3["Pitch"] = pitch;
         jsonobject3["Roll"] = roll;
         jsonobject3["Frekuensi"] = frekuensi;
+        datakirim = "";
         serializeJson(doc, datakirim);
         char kirim_loop[datakirim.length() + 1];
         datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
