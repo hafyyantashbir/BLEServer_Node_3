@@ -222,7 +222,7 @@ void loop() {
       datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
       BLEScanResults foundDevices = pBLEScan->start(scanTime, false);
       network.update();
-      if (NODE_1_RSSI > NODE_2_RSSI && NODE_1_RSSI > NODE_4_RSSI) {
+      if (NODE_1_RSSI >= NODE_2_RSSI && NODE_1_RSSI >= NODE_4_RSSI) {
         RF24NetworkHeader header(/*to node*/ NODE_1);
         bool NODE_1 = network.write(header, &kirim_loop, sizeof(kirim_loop));
         Serial.println(NODE_1 ? F("DATA TERKIRIM KE NODE 1") : F("GAGAL TERKIRIM KE NODE 1"));
@@ -231,8 +231,7 @@ void loop() {
           delay(100);
         }
         digitalWrite(LED_BUILTIN, LOW);
-      }
-      if (NODE_2_RSSI > NODE_1_RSSI && NODE_2_RSSI > NODE_4_RSSI) {
+      }else if (NODE_2_RSSI >= NODE_1_RSSI && NODE_2_RSSI >= NODE_4_RSSI) {
         RF24NetworkHeader header(/*to node*/ NODE_2);
         bool NODE_2 = network.write(header, &kirim_loop, sizeof(kirim_loop));
         Serial.println(NODE_2 ? F("DATA TERKIRIM KE NODE 2") : F("GAGAL TERKIRIM KE NODE 2"));
@@ -241,8 +240,7 @@ void loop() {
           delay(100);
         }
         digitalWrite(LED_BUILTIN, LOW);
-      }
-      if (NODE_4_RSSI > NODE_1_RSSI && NODE_4_RSSI > NODE_2_RSSI) {
+      }else if (NODE_4_RSSI >= NODE_1_RSSI && NODE_4_RSSI >= NODE_2_RSSI) {
         RF24NetworkHeader header(/*to node*/ NODE_4);
         bool NODE_4 = network.write(header, &kirim_loop, sizeof(kirim_loop));
         Serial.println(NODE_4 ? F("DATA TERKIRIM KE NODE 4") : F("GAGAL TERKIRIM KE NODE 4"));
@@ -275,7 +273,7 @@ void loop() {
       char kirim_loop[datakirim.length() + 1];
       datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
       BLEScanResults foundDevices = pBLEScan->start(scanTime, false);
-      if (NODE_2_RSSI > NODE_4_RSSI) {
+      if (NODE_2_RSSI >= NODE_4_RSSI) {
         network.update();
         RF24NetworkHeader header(/*to node*/ NODE_2);
         bool NODE_2 = network.write(header, &kirim_loop, sizeof(kirim_loop));
@@ -285,8 +283,7 @@ void loop() {
           delay(100);
         }
         digitalWrite(LED_BUILTIN, LOW);
-      }
-      if (NODE_4_RSSI > NODE_2_RSSI) {
+      }else if (NODE_4_RSSI >= NODE_2_RSSI) {
         network.update();
         RF24NetworkHeader header(/*to node*/ NODE_4);
         bool NODE_4 = network.write(header, &kirim_loop, sizeof(kirim_loop));
@@ -317,7 +314,7 @@ void loop() {
       char kirim_loop[datakirim.length() + 1];
       datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
       BLEScanResults foundDevices = pBLEScan->start(scanTime, false);
-      if (NODE_1_RSSI > NODE_4_RSSI) {
+      if (NODE_1_RSSI >= NODE_4_RSSI) {
         network.update();
         RF24NetworkHeader header(/*to node*/ NODE_1);
         bool NODE_1 = network.write(header, &kirim_loop, sizeof(kirim_loop));
@@ -327,8 +324,7 @@ void loop() {
           delay(100);
         }
         digitalWrite(LED_BUILTIN, LOW);
-      }
-      if (NODE_4_RSSI > NODE_1_RSSI) {
+      }else if (NODE_4_RSSI >= NODE_1_RSSI) {
         network.update();
         RF24NetworkHeader header(/*to node*/ NODE_4);
         bool NODE_4 = network.write(header, &kirim_loop, sizeof(kirim_loop));
@@ -363,7 +359,7 @@ void loop() {
       char kirim_loop[datakirim.length() + 1];
       datakirim.toCharArray(kirim_loop, sizeof(kirim_loop));
       BLEScanResults foundDevices = pBLEScan->start(scanTime, false);
-      if (NODE_1_RSSI > NODE_2_RSSI) {
+      if (NODE_1_RSSI >= NODE_2_RSSI) {
         network.update();
         RF24NetworkHeader header(/*to node*/ NODE_1);
         bool NODE_1 = network.write(header, &kirim_loop, sizeof(kirim_loop));
@@ -373,8 +369,7 @@ void loop() {
           delay(100);
         }
         digitalWrite(LED_BUILTIN, LOW);
-      }
-      if (NODE_2_RSSI > NODE_1_RSSI) {
+      }else if (NODE_2_RSSI >= NODE_1_RSSI) {
         network.update();
         RF24NetworkHeader header(/*to node*/ NODE_2);
         bool NODE_2 = network.write(header, &kirim_loop, sizeof(kirim_loop));
