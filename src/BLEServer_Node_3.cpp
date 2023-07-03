@@ -57,7 +57,7 @@ unsigned long intervalmillis = 10000; // Interval waktu (dalam milidetik)
 //variabel RSSI node
 int NODE_1_RSSI;
 int NODE_2_RSSI;
-int NODE_4_RSSI = -999;
+int NODE_4_RSSI;
 int NODE_5_RSSI;
 
 //variabel case
