@@ -42,9 +42,9 @@ const uint16_t NODE_5 = 00; // Alamat NODE_5 dalam format Octal
 
 //variabel DATA
 int node_asal = 3; //ID node
-unsigned long pitch = 23; // data pitch
-unsigned long roll = 10; // data roll
-unsigned long frekuensi = 1; // data frekuensi
+unsigned long usX = 23; // data usX
+unsigned long usY = 10; // data usY
+unsigned long usZ = 1; // data usZ
 String datakirim;
 String dataterima;
 int count = 0;
@@ -227,9 +227,9 @@ void loop() {
       JsonArray jsonarray = doc.to<JsonArray>();
       JsonObject jsonobject = jsonarray.createNestedObject();
       jsonobject["NodeID"] = node_asal;
-      jsonobject["Pitch"] = pitch;
-      jsonobject["Roll"] = roll;
-      jsonobject["Frekuensi"] = frekuensi;
+      jsonobject["usX"] = usX;
+      jsonobject["usY"] = usY;
+      jsonobject["usZ"] = usZ;
       jsonobject["Unixtime"] = now.unixtime();
       datakirim = "";
       serializeJson(doc, datakirim);
@@ -282,9 +282,9 @@ void loop() {
       jsonobject["Unixtime"] = Unixtime;
       JsonObject jsonobject1 = jsonarray.createNestedObject();
       jsonobject1["NodeID"] = node_asal;
-      jsonobject1["Pitch"] = pitch;
-      jsonobject1["Roll"] = roll;
-      jsonobject1["Frekuensi"] = frekuensi;
+      jsonobject1["usX"] = usX;
+      jsonobject1["usY"] = usY;
+      jsonobject1["usZ"] = usZ;
       jsonobject1["Unixtime"] = now.unixtime();
       datakirim = "";
       serializeJson(doc, datakirim);
@@ -326,9 +326,9 @@ void loop() {
       jsonobject["Unixtime"] = aUnixtime;
       JsonObject jsonobject1 = jsonarray.createNestedObject();
       jsonobject1["NodeID"] = node_asal;
-      jsonobject1["Pitch"] = pitch;
-      jsonobject1["Roll"] = roll;
-      jsonobject1["Frekuensi"] = frekuensi;
+      jsonobject1["usX"] = usX;
+      jsonobject1["usY"] = usY;
+      jsonobject1["usZ"] = usZ;
       jsonobject1["Unixtime"] = now.unixtime();
       datakirim = "";
       serializeJson(doc, datakirim);
@@ -374,9 +374,9 @@ void loop() {
       jsonobject["Unixtime"] = bUnixtime;
       JsonObject jsonobject1 = jsonarray.createNestedObject();
       jsonobject1["NodeID"] = node_asal;
-      jsonobject1["Pitch"] = pitch;
-      jsonobject1["Roll"] = roll;
-      jsonobject1["Frekuensi"] = frekuensi;
+      jsonobject1["usX"] = usX;
+      jsonobject1["usY"] = usY;
+      jsonobject1["usZ"] = usZ;
       jsonobject1["Unixtime"] = now.unixtime();
       datakirim = "";
       serializeJson(doc, datakirim);
@@ -430,9 +430,9 @@ void loop() {
         jsonobject1["Unixtime"] = dUnixtime;
         JsonObject jsonobject2 = jsonarray.createNestedObject();
         jsonobject2["NodeID"] = node_asal;
-        jsonobject2["Pitch"] = pitch;
-        jsonobject2["Roll"] = roll;
-        jsonobject2["Frekuensi"] = frekuensi;
+        jsonobject2["usX"] = usX;
+        jsonobject2["usY"] = usY;
+        jsonobject2["usZ"] = usZ;
         jsonobject2["Unixtime"] = now.unixtime();
         datakirim = "";
         serializeJson(doc, datakirim);
@@ -470,9 +470,9 @@ void loop() {
         jsonobject1["Unixtime"] = fUnixtime;
         JsonObject jsonobject2 = jsonarray.createNestedObject();
         jsonobject2["NodeID"] = node_asal;
-        jsonobject2["Pitch"] = pitch;
-        jsonobject2["Roll"] = roll;
-        jsonobject2["Frekuensi"] = frekuensi;
+        jsonobject2["usX"] = usX;
+        jsonobject2["usY"] = usY;
+        jsonobject2["usZ"] = usZ;
         jsonobject2["Unixtime"] = now.unixtime();
         datakirim = "";
         serializeJson(doc, datakirim);
@@ -514,9 +514,9 @@ void loop() {
         jsonobject1["Unixtime"] = hUnixtime;
         JsonObject jsonobject2 = jsonarray.createNestedObject();
         jsonobject2["NodeID"] = node_asal;
-        jsonobject2["Pitch"] = pitch;
-        jsonobject2["Roll"] = roll;
-        jsonobject2["Frekuensi"] = frekuensi;
+        jsonobject2["usX"] = usX;
+        jsonobject2["usY"] = usY;
+        jsonobject2["usZ"] = usZ;
         jsonobject2["Unixtime"] = now.unixtime();
         datakirim = "";
         serializeJson(doc, datakirim);
@@ -558,9 +558,9 @@ void loop() {
         jsonobject1["Unixtime"] = jUnixtime;
         JsonObject jsonobject2 = jsonarray.createNestedObject();
         jsonobject2["NodeID"] = node_asal;
-        jsonobject2["Pitch"] = pitch;
-        jsonobject2["Roll"] = roll;
-        jsonobject2["Frekuensi"] = frekuensi;
+        jsonobject2["usX"] = usX;
+        jsonobject2["usY"] = usY;
+        jsonobject2["usZ"] = usZ;
         jsonobject2["Unixtime"] = now.unixtime();
         datakirim = "";
         serializeJson(doc, datakirim);
@@ -600,9 +600,9 @@ void loop() {
         jsonobject1["Unixtime"] = lUnixtime;
         JsonObject jsonobject2 = jsonarray.createNestedObject();
         jsonobject2["NodeID"] = node_asal;
-        jsonobject2["Pitch"] = pitch;
-        jsonobject2["Roll"] = roll;
-        jsonobject2["Frekuensi"] = frekuensi;
+        jsonobject2["usX"] = usX;
+        jsonobject2["usY"] = usY;
+        jsonobject2["usZ"] = usZ;
         jsonobject2["Unixtime"] = now.unixtime();
         datakirim = "";
         serializeJson(doc, datakirim);
@@ -642,9 +642,9 @@ void loop() {
         jsonobject1["Unixtime"] = nUnixtime;
         JsonObject jsonobject2 = jsonarray.createNestedObject();
         jsonobject2["NodeID"] = node_asal;
-        jsonobject2["Pitch"] = pitch;
-        jsonobject2["Roll"] = roll;
-        jsonobject2["Frekuensi"] = frekuensi;
+        jsonobject2["usX"] = usX;
+        jsonobject2["usY"] = usY;
+        jsonobject2["usZ"] = usZ;
         jsonobject2["unixtime"] = now.unixtime();
         datakirim = "";
         serializeJson(doc, datakirim);
@@ -698,9 +698,9 @@ void loop() {
         jsonobject2["Unixtime"] = qUnixtime;
         JsonObject jsonobject3 = jsonarray.createNestedObject();
         jsonobject3["NodeID"] = node_asal;
-        jsonobject3["Pitch"] = pitch;
-        jsonobject3["Roll"] = roll;
-        jsonobject3["Frekuensi"] = frekuensi;
+        jsonobject3["usX"] = usX;
+        jsonobject3["usY"] = usY;
+        jsonobject3["usZ"] = usZ;
         jsonobject3["Unixtime"] = now.unixtime();
         datakirim = "";
         serializeJson(doc, datakirim);
@@ -750,9 +750,9 @@ void loop() {
         jsonobject2["Unixtime"] = tUnixtime;
         JsonObject jsonobject3 = jsonarray.createNestedObject();
         jsonobject3["NodeID"] = node_asal;
-        jsonobject3["Pitch"] = pitch;
-        jsonobject3["Roll"] = roll;
-        jsonobject3["Frekuensi"] = frekuensi;
+        jsonobject3["usX"] = usX;
+        jsonobject3["usY"] = usY;
+        jsonobject3["usZ"] = usZ;
         jsonobject3["Unixtime"] = now.unixtime();
         datakirim = "";
         serializeJson(doc, datakirim);
@@ -802,9 +802,9 @@ void loop() {
         jsonobject2["Unixtime"] = wUnixtime;
         JsonObject jsonobject3 = jsonarray.createNestedObject();
         jsonobject3["NodeID"] = node_asal;
-        jsonobject3["Pitch"] = pitch;
-        jsonobject3["Roll"] = roll;
-        jsonobject3["Frekuensi"] = frekuensi;
+        jsonobject3["usX"] = usX;
+        jsonobject3["usY"] = usY;
+        jsonobject3["usZ"] = usZ;
         jsonobject3["Unixtime"] = now.unixtime();
         datakirim = "";
         serializeJson(doc, datakirim);
@@ -854,9 +854,9 @@ void loop() {
         jsonobject2["Unixtime"] = zUnixtime;
         JsonObject jsonobject3 = jsonarray.createNestedObject();
         jsonobject3["NodeID"] = node_asal;
-        jsonobject3["Pitch"] = pitch;
-        jsonobject3["Roll"] = roll;
-        jsonobject3["Frekuensi"] = frekuensi;
+        jsonobject3["usX"] = usX;
+        jsonobject3["usY"] = usY;
+        jsonobject3["usZ"] = usZ;
         jsonobject3["Unixtime"] = now.unixtime();
         datakirim = "";
         serializeJson(doc, datakirim);
@@ -906,9 +906,9 @@ void loop() {
         jsonobject2["Unixtime"] = acUnixtime;
         JsonObject jsonobject3 = jsonarray.createNestedObject();
         jsonobject3["NodeID"] = node_asal;
-        jsonobject3["Pitch"] = pitch;
-        jsonobject3["Roll"] = roll;
-        jsonobject3["Frekuensi"] = frekuensi;
+        jsonobject3["usX"] = usX;
+        jsonobject3["usY"] = usY;
+        jsonobject3["usZ"] = usZ;
         jsonobject3["Unixtime"] = now.unixtime();
         datakirim = "";
         serializeJson(doc, datakirim);
@@ -958,9 +958,9 @@ void loop() {
         jsonobject2["Unixtime"] = afUnixtime;
         JsonObject jsonobject3 = jsonarray.createNestedObject();
         jsonobject3["NodeID"] = node_asal;
-        jsonobject3["Pitch"] = pitch;
-        jsonobject3["Roll"] = roll;
-        jsonobject3["Frekuensi"] = frekuensi;
+        jsonobject3["usX"] = usX;
+        jsonobject3["usY"] = usY;
+        jsonobject3["usZ"] = usZ;
         jsonobject3["Unixtime"] = now.unixtime();
         datakirim = "";
         serializeJson(doc, datakirim);
