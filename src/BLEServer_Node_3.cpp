@@ -35,10 +35,11 @@ uint8_t dataBuffer[MAX_PAYLOAD_SIZE];  //MAX_PAYLOAD_SIZE is defined in RF24Netw
 
 //alamat node
 const uint16_t this_node = 03;   // alamat node ini (NODE_3) dalam format Octal
+const uint16_t NODE_Master = 00; // Alamat NODE_Master dalam format Octal
 const uint16_t NODE_1 = 01;  // Alamat NODE_1 dalam format Octal
 const uint16_t NODE_2 = 02; // Alamat NODE_2 dalam format Octal
 const uint16_t NODE_4 = 04; // Alamat NODE_4 dalam format Octal
-const uint16_t NODE_5 = 00; // Alamat NODE_5 dalam format Octal
+const uint16_t NODE_5 = 05; // Alamat NODE_5 dalam format Octal
 
 //variabel DATA
 int node_asal = 3; //ID node
