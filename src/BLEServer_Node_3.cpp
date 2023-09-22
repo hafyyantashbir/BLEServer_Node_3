@@ -35,16 +35,17 @@ uint8_t dataBuffer[MAX_PAYLOAD_SIZE];  //MAX_PAYLOAD_SIZE is defined in RF24Netw
 
 //alamat node
 const uint16_t this_node = 03;   // alamat node ini (NODE_3) dalam format Octal
+const uint16_t NODE_Master = 00;  // Alamat NODE_1 dalam format Octal
 const uint16_t NODE_1 = 01;  // Alamat NODE_1 dalam format Octal
 const uint16_t NODE_2 = 02; // Alamat NODE_2 dalam format Octal
 const uint16_t NODE_4 = 04; // Alamat NODE_4 dalam format Octal
-const uint16_t NODE_5 = 00; // Alamat NODE_5 dalam format Octal
+const uint16_t NODE_5 = 05; // Alamat NODE_5 dalam format Octal
 
 //variabel DATA
 int node_asal = 3; //ID node
-unsigned long usX = 23; // data usX
-unsigned long usY = 10; // data usY
-unsigned long usZ = 1; // data usZ
+unsigned long Pitch = 23; // data Pitch
+unsigned long Roll = 10; // data Roll
+unsigned long Frekuensi = 1; // data Frekuensi
 String datakirim;
 String dataterima;
 int count = 0;
@@ -55,6 +56,7 @@ unsigned long previousTime = 0; // Waktu sebelumnya
 unsigned long intervalmillis = 10000; // Interval waktu (dalam milidetik)
 
 //variabel RSSI node
+int NODE_Master_RSSI;
 int NODE_1_RSSI;
 int NODE_2_RSSI;
 int NODE_4_RSSI;
@@ -73,6 +75,10 @@ int scanTime = 1; //In seconds
 BLEScan* pBLEScan;
 class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks {
     void onResult(BLEAdvertisedDevice advertisedDevice) {
+      if (advertisedDevice.getName() == "NODE_Master")
+      {
+        NODE_Master_RSSI = advertisedDevice.getRSSI();
+      }
       if (advertisedDevice.getName() == "NODE_1")
       {
         NODE_1_RSSI = advertisedDevice.getRSSI();
@@ -168,7 +174,8 @@ void setup() {
   //scan BLE
   Serial.println("SCANNING......");
   BLEScanResults foundDevices = pBLEScan->start(scanTime, false);
-  Serial.print("RSSI NODE 1 : " + String(NODE_1_RSSI));
+  Serial.print("RSSI NODE Master : " + String(NODE_Master_RSSI));
+  Serial.print(" || RSSI NODE 1 : " + String(NODE_1_RSSI));
   Serial.print(" || RSSI NODE 2 : " + String(NODE_2_RSSI));
   Serial.print(" || RSSI NODE 4 : " + String(NODE_4_RSSI));
   Serial.println(" || RSSI NODE 5 : " + String(NODE_5_RSSI));
