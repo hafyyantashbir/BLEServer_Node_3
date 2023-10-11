@@ -19,6 +19,9 @@
 #include <BLEServer.h>
 #include <BLEAdvertisedDevice.h>
 
+//konfigurasi stack size
+SET_LOOP_TASK_STACK_SIZE(64*1024); // 64KB
+
 //konfigurasi RTC
 RTC_DS3231 rtc;
 char days[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
@@ -179,9 +182,18 @@ void setup() {
   Serial.print(" || RSSI NODE 2 : " + String(NODE_2_RSSI));
   Serial.print(" || RSSI NODE 4 : " + String(NODE_4_RSSI));
   Serial.println(" || RSSI NODE 5 : " + String(NODE_5_RSSI));
+
+  Serial.printf("Arduino Stack was set to %d bytes", getArduinoLoopTaskStackSize());
+  // Print unused stack for the task that is running setup()
+  Serial.printf("\nSetup() - Free Stack Space: %d", uxTaskGetStackHighWaterMark(NULL));
 }
 
 void loop() {
+  delay(1000);
+
+  // Print unused stack for the task that is running loop() - the same as for setup()
+  Serial.printf("\nLoop() - Free Stack Space: %d", uxTaskGetStackHighWaterMark(NULL));
+  
   network.update();  // Check the network regularly
   DateTime now = rtc.now();
   StaticJsonDocument<512> doc;
