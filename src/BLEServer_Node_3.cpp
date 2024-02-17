@@ -22,7 +22,7 @@ MPU6050 mpu;
 #include "printf.h"
 
 //konfigurasi stack size
-SET_LOOP_TASK_STACK_SIZE(64 * 1024); // 64KB
+SET_LOOP_TASK_STACK_SIZE(32 * 1024); // 64KB
 
 //konfigurasi RTC
 RTC_DS3231 rtc;
@@ -43,24 +43,6 @@ String datakirim;
 
 //variabel millis
 unsigned long currentMillis = 0;
-
-//Fungsi untuk 2 loop
-//TaskHandle_t Task1;
-
-//program loop 2
-//void loop2( void * parameter) {
-//  for (;;) {
-//    unsigned long currentTime = millis(); // Waktu saat ini
-//
-//    if (currentTime - previousTime >= intervalmillis) {
-//      previousTime = currentTime; // Perbarui waktu sebelumnya
-//      Serial.println("MODE : SCANNING......");
-//      BLEScanResults foundDevices = pBLEScan->start(scanTime, false);
-//      Serial.print("RSSI NODE 1 : " + String(NODE_1_RSSI));
-//      Serial.println(" || RSSI NODE 2 : " + String(NODE_2_RSSI));
-//    }
-//  }
-//}
 
 //konfigurasi MPU6050
 const int MPU_ADDR = 0x69; // I2C address of the MPU-6050. If AD0 pin is set to HIGH, the I2C address will be 0x69.
@@ -133,7 +115,7 @@ void getAngle(int Ax, int Ay, int Az)
 // -4232  -706  1729  173 -94 37
 //                       XA      YA      ZA      XG      YG      ZG
 //int MPUOffsets[6] = {  -1981,  4981,   331,    14,    -188,     58};
-int MPUOffsets[6] = {  -1815,  4957,   334,    22,    -186,     61};
+int MPUOffsets[6] = {  -1879,  4952,   3852,    20,    -185,     58};
 
 // ================================================================
 // ===                      i2c SETUP Items                     ===
@@ -286,76 +268,13 @@ void PrintVector(double * vData, uint16_t bufferSize, uint8_t scaleType)
   }
 }
 
-void setup() {
-  Serial.begin(115200);
+//Fungsi untuk 2 loop
+TaskHandle_t Task1;
 
-  //MPU6050
-  Serial.println("i2cSetup");
-  i2cSetup();
-  Serial.println("MPU6050Connect");
-  MPU6050Connect();
-  Serial.println("Setup complete");
-  pinMode(LED_PIN, OUTPUT);
-  Wire.begin();
-  Wire.beginTransmission(MPU_ADDR); // Begins a transmission to the I2C slave (GY-521 board)
-  Wire.write(0x6B); // PWR_MGMT_1 register
-  Wire.write(0); // set to zero (wakes up the MPU-6050)
-  Wire.endTransmission(true);
-
-  //Fungsi untuk 2 loop
-  //  xTaskCreatePinnedToCore(
-  //    loop2,
-  //    "BLE_SCANNING",
-  //    1000,
-  //    NULL,
-  //    1,
-  //    &Task1,
-  //    0);
-
-  if (! rtc.begin()) {
-    Serial.println("Tidak dapat menemukan RTC! Periksa sirkuit.");
-    while (1);
-  }
-
-  while (!Serial) {
-    // some boards need this because of native USB capability
-  }
-  mesh.setNodeID(this_node); //Set the Node ID
-  Serial.println(F("Menghubungkan ke jaringan..."));
-
-  if (!mesh.begin()) {
-    if (radio.isChipConnected()) {
-      do {
-        // mesh.renewAddress() will return MESH_DEFAULT_ADDRESS on failure to connect
-        Serial.println(F("Gagal terhubung ke jaringan.\nMenghubungkan ke jaringan..."));
-      } while (mesh.renewAddress() == MESH_DEFAULT_ADDRESS);
-    } else {
-      Serial.println(F("NRF24L01 tidak merespon."));
-      while (1) {
-        // hold in an infinite loop
-      }
-    }
-  }
-  printf_begin();
-  radio.printDetails();  // print detail konfigurasi NRF24L01
-
-  // print memori stack keseluruhan
-  Serial.printf("Arduino Stack was set to %d bytes", getArduinoLoopTaskStackSize());
-  // print sisa memori stack pada void setup
-  Serial.printf("\nSetup() - Free Stack Space: %d", uxTaskGetStackHighWaterMark(NULL));
-}
-
-void loop() {
-  // print sisa memori stack pada void loop
-  Serial.printf("\nLoop() - Free Stack Space: %d", uxTaskGetStackHighWaterMark(NULL));
-
-  mesh.update();
-  DateTime now = rtc.now();
-  StaticJsonDocument<128> doc;
-
-  // Mengirim data ke master
-  if (millis() - currentMillis >= 1000) {
-    for (uint16_t i = 0; i < samples; i++) {
+//program loop 2
+void bacasensor( void * parameter) {
+ for (;;) {
+   for (uint16_t i = 0; i < samples; i++) {
       Wire.beginTransmission(MPU_ADDR);
       Wire.write(0x3B); // starting with register 0x3B (ACCEL_XOUT_H) [MPU-6000 and MPU-6050 Register Map and Descriptions Revision 4.2, p.40]
       Wire.endTransmission(false); // the parameter indicates that the Arduino will send a restart. As a result, the connection is kept active.
@@ -420,6 +339,79 @@ void loop() {
     kalPitch = kalPitch - 0.8;
     kalRoll = kalRoll + 2.4;
     f = abs(f - 0.12);
+    Serial.println("Running on Core : "+String(xPortGetCoreID())+", Pitch : "+String(kalPitch)+", Roll : "+String(kalRoll)+", Frekuensi : "+String(f));
+ }
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  //MPU6050
+  Serial.println("i2cSetup");
+  i2cSetup();
+  Serial.println("MPU6050Connect");
+  MPU6050Connect();
+  Serial.println("Setup complete");
+  pinMode(LED_PIN, OUTPUT);
+  Wire.begin();
+  Wire.beginTransmission(MPU_ADDR); // Begins a transmission to the I2C slave (GY-521 board)
+  Wire.write(0x6B); // PWR_MGMT_1 register
+  Wire.write(0); // set to zero (wakes up the MPU-6050)
+  Wire.endTransmission(true);
+
+  if (! rtc.begin()) {
+    Serial.println("Tidak dapat menemukan RTC! Periksa sirkuit.");
+    while (1);
+  }
+
+  while (!Serial) {
+    // some boards need this because of native USB capability
+  }
+  mesh.setNodeID(this_node); //Set the Node ID
+  Serial.println(F("Menghubungkan ke jaringan..."));
+
+  if (!mesh.begin()) {
+    if (radio.isChipConnected()) {
+      do {
+        // mesh.renewAddress() will return MESH_DEFAULT_ADDRESS on failure to connect
+        Serial.println(F("Gagal terhubung ke jaringan.\nMenghubungkan ke jaringan..."));
+      } while (mesh.renewAddress() == MESH_DEFAULT_ADDRESS);
+    } else {
+      Serial.println(F("NRF24L01 tidak merespon."));
+      while (1) {
+        // hold in an infinite loop
+      }
+    }
+  }
+  printf_begin();
+  radio.printDetails();  // print detail konfigurasi NRF24L01
+
+  //Fungsi untuk 2 loop
+   xTaskCreatePinnedToCore(
+     bacasensor,    /* Task function. */
+     "baca_sensor", /* name of task. */
+     32768,         /* Stack size of task */
+     NULL,          /* parameter of the task */
+     1,             /* priority of the task */
+     &Task1,        /* Task handle to keep track of created task */
+     0);            /* pin task to core 0 */
+
+  // print memori stack keseluruhan
+  Serial.printf("Arduino Stack was set to %d bytes", getArduinoLoopTaskStackSize());
+  // print sisa memori stack pada void setup
+  Serial.printf("\nSetup() - Free Stack Space: %d", uxTaskGetStackHighWaterMark(NULL));
+}
+
+void loop() {
+  // print sisa memori stack pada void loop
+  Serial.printf("\nLoop() - Free Stack Space: %d", uxTaskGetStackHighWaterMark(NULL));
+
+  mesh.update();
+  DateTime now = rtc.now();
+  StaticJsonDocument<128> doc;
+
+  // Mengirim data ke master
+  if (millis() - currentMillis >= 250) {
     currentMillis = millis();
     doc["NodeID"] = String(node_asal);
     doc["Pitch"] = String(kalPitch);
